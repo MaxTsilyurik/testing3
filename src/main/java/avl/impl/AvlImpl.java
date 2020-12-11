@@ -19,25 +19,6 @@ public class AvlImpl implements Avl {
         else return x.h - y.h;
     }
 
-    public Node tempAdd(Node node, Integer key, Integer value, Node father) {
-        if (node == null) {
-            return new Node(key, value, father);
-        }
-        int compareResult = key.compareTo(node.key);
-        if (compareResult > 0) {
-            node.right = tempAdd(node.right, key, value, node);
-            node.h = height(node.left, node.right) + 1;
-        } else {
-            if (compareResult < 0) {
-                node.left = tempAdd(node.left, key, value, node);
-                node.h = height(node.left, node.right) + 1;
-            } else {
-                node.value = value;
-            }
-        }
-        return node;
-    }
-
     public Node leftRotation(Node node) {
         if (node.right.right == null && node.right.left != null) {
             node.right = rightRotation(node.right);

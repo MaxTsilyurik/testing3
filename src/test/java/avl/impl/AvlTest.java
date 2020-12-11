@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class AvlTest {
-
+public class AvlTest extends BaseTest{
     @Test
     public void shouldCreateNode() {
         Node node = new Node(1, 12, null);
@@ -64,21 +63,19 @@ public class AvlTest {
 
     @Test
     public void shouldWorkingTempAdd() {
-        AvlImpl avl = new AvlImpl();
-
-        Node root = avl.tempAdd(null, 2, 2, null);
+        Node root = tempAdd(null, 2, 2, null);
         assertNotNull(root);
 
-        root = avl.tempAdd(root, 3, 3, null);
+        root = tempAdd(root, 3, 3, null);
         assertEquals(root.right.key, 3);
 
-        root = avl.tempAdd(root, 1, 1, null);
+        root = tempAdd(root, 1, 1, null);
         assertEquals(root.left.key, 1);
 
-        root = avl.tempAdd(root, 1, 1, null);
+        root = tempAdd(root, 1, 1, null);
         assertEquals(root.left.key, 1);
 
-        root = avl.tempAdd(root, 0, 0, null);
+        root = tempAdd(root, 0, 0, null);
         assertEquals(root.left.left.key, 0);
     }
 
@@ -86,9 +83,9 @@ public class AvlTest {
     public void shouldRightRotationAvl() {
         AvlImpl avl = new AvlImpl();
 
-        Node root = avl.tempAdd(null, 3, 3, null);
-        root = avl.tempAdd(root, 2, 2, null);
-        root = avl.tempAdd(root, 1, 1, null);
+        Node root = tempAdd(null, 3, 3, null);
+        root = tempAdd(root, 2, 2, null);
+        root = tempAdd(root, 1, 1, null);
 
         root = avl.rightRotation(root);
 
@@ -101,9 +98,9 @@ public class AvlTest {
     public void shouldLeftRotationAvl() {
         AvlImpl avl = new AvlImpl();
 
-        Node root = avl.tempAdd(null, 1, 1, null);
-        root = avl.tempAdd(root, 2, 2, null);
-        root = avl.tempAdd(root, 3, 3, null);
+        Node root = tempAdd(null, 1, 1, null);
+        root = tempAdd(root, 2, 2, null);
+        root = tempAdd(root, 3, 3, null);
 
         root = avl.leftRotation(root);
 
@@ -136,6 +133,5 @@ public class AvlTest {
         assertEquals(rightRoot.left.key, 5);
         assertEquals(rightRoot.right.key, 7);
     }
-
 
 }
