@@ -2,8 +2,7 @@ package avl.impl;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class AvlTest {
 
@@ -62,5 +61,26 @@ public class AvlTest {
         assertEquals(avl.balance(node1, null), 12);
         assertEquals(avl.balance(null, node2), -1);
     }
+
+    @Test
+    public void shouldWorkingTempAdd() {
+        AvlImpl avl = new AvlImpl();
+
+        Node root = avl.tempAdd(null, 2, 2, null);
+        assertNotNull(root);
+
+        root = avl.tempAdd(root, 3, 3, null);
+        assertEquals(root.right.key, 3);
+
+        root = avl.tempAdd(root, 1, 1, null);
+        assertEquals(root.left.key, 1);
+
+        root = avl.tempAdd(root, 1, 1, null);
+        assertEquals(root.left.key, 1);
+
+        root = avl.tempAdd(root, 0, 0, null);
+        assertEquals(root.left.left.key, 0);
+    }
+
 
 }
