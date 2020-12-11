@@ -89,4 +89,34 @@ public class AvlImpl implements Avl {
         }
         return node;
     }
+
+    public Node add(Node node, Integer key, Integer value, Node father) {
+        if (node == null) {
+            return new Node(key, value, father);
+        }
+        int compareResult = key.compareTo(node.key);
+        if (compareResult > 0) {
+            node.right = add(node.right, key, value, node);
+            node.h = height(node.left, node.right) + 1;
+        } else {
+            if (compareResult < 0) {
+                node.left = add(node.left, key, value, node);
+                node.h = height(node.left, node.right) + 1;
+            } else {
+                node.value = value;
+            }
+        }
+        node.balance = balance(node.left, node.right);
+        if (node.balance == -2) {
+            node = leftRotation(node);
+        } else if (node.balance == 2) {
+            node = rightRotation(node);
+        }
+        return node;
+    }
+
+    @Override
+    public void add(Integer key, Integer value) {
+        root = add(root, key, value, null);
+    }
 }
