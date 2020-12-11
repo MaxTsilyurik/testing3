@@ -28,7 +28,7 @@ public class AvlTest {
     }
 
     @Test
-    public void shouldGetHeightAVL() {
+    public void shouldGetHeightAvl() {
         AvlImpl avl = new AvlImpl();
 
         Node node1 = new Node(1, 1, null);
@@ -47,7 +47,7 @@ public class AvlTest {
     }
 
     @Test
-    public void shouldBalanceAVL() {
+    public void shouldBalanceAvl() {
         AvlImpl avl = new AvlImpl();
         Node node1 = new Node(1, 1, null);
         Node node2 = new Node(2, 2, null);
@@ -80,6 +80,36 @@ public class AvlTest {
 
         root = avl.tempAdd(root, 0, 0, null);
         assertEquals(root.left.left.key, 0);
+    }
+
+    @Test
+    public void shouldRightRotationAvl() {
+        AvlImpl avl = new AvlImpl();
+
+        Node root = avl.tempAdd(null, 3, 3, null);
+        root = avl.tempAdd(root, 2, 2, null);
+        root = avl.tempAdd(root, 1, 1, null);
+
+        root = avl.rightRotation(root);
+
+        assertEquals(root.key, 2);
+        assertEquals(root.left.key, 1);
+        assertEquals(root.right.key, 3);
+    }
+
+    @Test
+    public void shouldLeftRotationAvl() {
+        AvlImpl avl = new AvlImpl();
+
+        Node root = avl.tempAdd(null, 1, 1, null);
+        root = avl.tempAdd(root, 2, 2, null);
+        root = avl.tempAdd(root, 3, 3, null);
+
+        root = avl.leftRotation(root);
+
+        assertEquals(root.key, 2);
+        assertEquals(root.left.key, 1);
+        assertEquals(root.right.key, 3);
     }
 
 
