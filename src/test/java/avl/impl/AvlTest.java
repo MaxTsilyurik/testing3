@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class AvlTest {
+
     @Test
     public void shouldCreateNode() {
         Node node = new Node(1, 12, null);
@@ -26,4 +27,24 @@ public class AvlTest {
         assertNull(right);
         assertNull(father);
     }
+
+    @Test
+    public void shouldGetHeightAVL() {
+        AvlImpl avl = new AvlImpl();
+
+        Node node1 = new Node(1, 1, null);
+        Node node2 = new Node(2, 21, null);
+
+        assertEquals(avl.height(node1, node2), 1);
+
+        node1.h = 2;
+        assertEquals(avl.height(node1, node2), 2);
+
+        assertEquals(avl.height(null, null), 0);
+
+        assertEquals(avl.height(node1, null), 2);
+
+        assertEquals(avl.height(null, node2), 1);
+    }
+
 }
